@@ -432,6 +432,13 @@ class SassFunctionTest < Test::Unit::TestCase
     assert_equal("rgba(255, 0, 0, 0)", evaluate("mix(transparentize(#f00, 1), #00f, 100%)"))
   end
 
+  def test_multiply
+    assert_equal("#7189a3", evaluate("multiply(#abc, #abc)"))
+    assert_equal("white", evaluate("multiply(#fff, #fff)"))
+    assert_equal("black", evaluate("multiply(#000, #fff)"))
+    assert_equal("#33667a", evaluate("multiply(#369, #ffc)"))
+  end
+
   def test_mix_tests_types
     assert_error_message("\"foo\" is not a color for `mix'", "mix(\"foo\", #f00, 10%)")
     assert_error_message("\"foo\" is not a color for `mix'", "mix(#f00, \"foo\", 10%)")

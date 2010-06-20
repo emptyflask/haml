@@ -28,6 +28,9 @@ module Sass::Script
   # \{#mix}
   # : Mixes two colors together.
   #
+  # \{#multiply}
+  # : Multiplies two colors.
+  #
   # ## HSL Functions
   #
   # \{#hsl}
@@ -648,6 +651,28 @@ module Sass::Script
       rgb = color1.rgb.zip(color2.rgb).map {|v1, v2| v1*w1 + v2*w2}
       alpha = color1.alpha*p + color2.alpha*(1-p)
       Color.new(rgb + [alpha])
+    end
+
+    # Multiplies the floating point values of two colors.
+    # This is similar to Photoshop's "multiply" layer mode. Useful for things
+    # such as applying a highlight color over several other colors:
+    #
+    # tr.odd.highlight td
+    #   background: multiply($highlight, $odd)
+    #
+    # tr.even.highlight td
+    #   background: multiply($highlight, $even)
+    #
+    # @param color1 [Color]
+    # @param color2 [Color]
+    # @return [Color]
+    # @raise [ArgumentError] if `color1` or `color2` aren't colors
+    def multiply(color1, color2)
+      assert_type color1, :Color
+      assert_type color2, :Color
+      c1 = color1.rgb.map { |c| c / 255.0 }
+      c2 = color2.rgb.map { |c| c / 255.0 }
+      Color.new(c1.zip(c2).map { |a,b| (a*b*255).to_i })
     end
 
     # Converts a color to grayscale.

@@ -5,6 +5,11 @@
 
 ## 3.0.13 (Unreleased)
 
+### `multiply()` Color Function
+
+Multiplies the floating point values of two colors, similar to Photoshop's "multiply" layer mode.
+(Thanks to [Jon Roberts](http://jon.bandedartists.com))
+
 ## CSS `@import` Directives
 
 Sass is now more intelligent about when to compile `@import` directives to plain CSS.
