@@ -7,7 +7,7 @@
 
 ### `multiply()` Color Function
 
-Multiplies the floating point values of two colors, similar to Photoshop's "multiply" layer mode.
+Multiplies the floating point values of two colors, similar to Photoshop's "multiply" layer mode. Alpha channels are handled correctly.
 (Thanks to [Jon Roberts](http://jon.bandedartists.com))
 
 ## CSS `@import` Directives

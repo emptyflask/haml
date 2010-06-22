@@ -437,6 +437,9 @@ class SassFunctionTest < Test::Unit::TestCase
     assert_equal("white", evaluate("multiply(#fff, #fff)"))
     assert_equal("black", evaluate("multiply(#000, #fff)"))
     assert_equal("#33667a", evaluate("multiply(#369, #ffc)"))
+    assert_equal("#8e8e8e", evaluate("multiply(rgba(#eee, 1), rgba(#999, 1))"))
+    assert_equal("rgba(142, 142, 142, 0.9375)", evaluate("multiply(rgba(#eee, 0.75), rgba(#999, 0.75))"))
+    assert_equal("rgba(142, 142, 142, 0.36)", evaluate("multiply(rgba(#eee, 0.2), rgba(#999, 0.2))"))
   end
 
   def test_mix_tests_types

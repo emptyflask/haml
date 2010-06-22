@@ -672,7 +672,10 @@ module Sass::Script
       assert_type color2, :Color
       c1 = color1.rgb.map { |c| c / 255.0 }
       c2 = color2.rgb.map { |c| c / 255.0 }
-      Color.new(c1.zip(c2).map { |a,b| (a*b*255).to_i })
+      a1 = color1.alpha
+      a2 = color2.alpha
+      alpha = a2 + a1 - a2 * a1
+      Color.new(c1.zip(c2).map { |a,b| (a*b*255).to_i } + [alpha])
     end
 
     # Converts a color to grayscale.
